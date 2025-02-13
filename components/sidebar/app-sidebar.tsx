@@ -11,7 +11,7 @@ const data = {
   user: {
     name: 'Burak Boduroglu',
     email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+    avatar: '',
   },
   navMain: [
     {
