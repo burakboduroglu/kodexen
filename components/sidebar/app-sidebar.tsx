@@ -7,7 +7,6 @@ import { NavMain } from '@/components/sidebar/nav-main'
 import { NavUser } from '@/components/sidebar/nav-user'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarRail } from '@/components/ui/sidebar'
 
-// This is sample data.
 const data = {
   user: {
     name: 'Burak Boduroglu',
@@ -23,11 +22,11 @@ const data = {
       items: [
         {
           title: 'Akış',
-          url: '/dashboard/feed',
+          url: '/feed',
         },
         {
           title: 'Keşfet',
-          url: '/dashboard/explore',
+          url: '/explore',
         },
         {
           title: 'Kaydedilenler',
@@ -48,10 +47,6 @@ const data = {
           title: 'Paylaşımlarım',
           url: '/profile/posts',
         },
-        {
-          title: 'Projelerim',
-          url: '/profile/projects',
-        },
       ],
     },
     {
@@ -61,15 +56,15 @@ const data = {
       items: [
         {
           title: 'Gruplar',
-          url: '/community/groups',
+          url: '#',
         },
         {
           title: 'Etkinlikler',
-          url: '/community/events',
+          url: '#',
         },
         {
           title: 'Mentorlar',
-          url: '/community/mentors',
+          url: '#',
         },
       ],
     },

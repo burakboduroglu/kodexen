@@ -30,9 +30,8 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarHeader className='flex flex-row border-b-2'>
-        <Rotate3d />
-        Kodexen
+      <SidebarHeader className='flex items-center justify-start gap-2 p-4'>
+        <Rotate3d className='h-6 w-6' />
       </SidebarHeader>
       <SidebarMenu className='pt-3'>
         {items.map((item) => (
@@ -46,6 +45,11 @@ export function NavMain({
                 <SidebarMenuButton tooltip={item.title}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
+                  {item.title === 'Topluluk' && (
+                    <span className='ml-2 rounded-full bg-muted px-2 py-0.5 text-xs font-medium'>
+                      Yakında
+                    </span>
+                  )}
                   <ChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
