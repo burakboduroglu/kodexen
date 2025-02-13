@@ -25,8 +25,8 @@ const data = {
           url: '/feed',
         },
         {
-          title: 'Keşfet',
-          url: '/explore',
+          title: 'Paylaş',
+          url: '/profile/share',
         },
         {
           title: 'Kaydedilenler',
