@@ -1,30 +1,11 @@
 'use client'
 
 import * as React from 'react'
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from 'lucide-react'
+import { BookOpen, Command, Frame } from 'lucide-react'
 
 import { NavMain } from '@/components/sidebar/nav-main'
-import { NavProjects } from '@/components/sidebar/nav-projects'
 import { NavUser } from '@/components/sidebar/nav-user'
-import { TeamSwitcher } from '@/components/sidebar/team-switcher'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from '@/components/ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarRail } from '@/components/ui/sidebar'
 
 // This is sample data.
 const data = {
@@ -33,125 +14,64 @@ const data = {
     email: 'm@example.com',
     avatar: '/avatars/shadcn.jpg',
   },
-  teams: [
-    {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
-    },
-    {
-      name: 'Evil Corp.',
-      logo: Command,
-      plan: 'Free',
-    },
-  ],
   navMain: [
     {
-      title: 'Playground',
-      url: '#',
-      icon: SquareTerminal,
+      title: 'Ana Sayfa',
+      url: '/dashboard',
+      icon: Command,
       isActive: true,
       items: [
         {
-          title: 'History',
-          url: '#',
+          title: 'Akış',
+          url: '/dashboard/feed',
         },
         {
-          title: 'Starred',
-          url: '#',
+          title: 'Keşfet',
+          url: '/dashboard/explore',
         },
         {
-          title: 'Settings',
-          url: '#',
+          title: 'Kaydedilenler',
+          url: '/dashboard/bookmarks',
         },
       ],
     },
     {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
+      title: 'Profil',
+      url: '/profile',
+      icon: Frame,
       items: [
         {
-          title: 'Genesis',
-          url: '#',
+          title: 'Bilgilerim',
+          url: '/profile/info',
         },
         {
-          title: 'Explorer',
-          url: '#',
+          title: 'Paylaşımlarım',
+          url: '/profile/posts',
         },
         {
-          title: 'Quantum',
-          url: '#',
+          title: 'Projelerim',
+          url: '/profile/projects',
         },
       ],
     },
     {
-      title: 'Documentation',
-      url: '#',
+      title: 'Topluluk',
+      url: '/community',
       icon: BookOpen,
       items: [
         {
-          title: 'Introduction',
-          url: '#',
+          title: 'Gruplar',
+          url: '/community/groups',
         },
         {
-          title: 'Get Started',
-          url: '#',
+          title: 'Etkinlikler',
+          url: '/community/events',
         },
         {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
+          title: 'Mentorlar',
+          url: '/community/mentors',
         },
       ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: 'Design Engineering',
-      url: '#',
-      icon: Frame,
-    },
-    {
-      name: 'Sales & Marketing',
-      url: '#',
-      icon: PieChart,
-    },
-    {
-      name: 'Travel',
-      url: '#',
-      icon: Map,
     },
   ],
 }
@@ -159,12 +79,8 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible='icon' {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
