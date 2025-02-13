@@ -55,10 +55,10 @@ export default function Navbar() {
                 ) : (
                   <>
                     <Button variant='ghost' asChild className='w-full justify-start'>
-                      <Link href='/login'>Giriş Yap</Link>
+                      <Link href={process.env.NEXT_PUBLIC_LOGIN_PATH as string}>Giriş Yap</Link>
                     </Button>
                     <Button asChild className='w-full justify-start'>
-                      <Link href='/register'>Kayıt Ol</Link>
+                      <Link href={process.env.NEXT_PUBLIC_REGISTER_PATH as string}>Kayıt Ol</Link>
                     </Button>
                   </>
                 )}
@@ -101,10 +101,10 @@ export default function Navbar() {
             ) : (
               <>
                 <Button variant='ghost' asChild>
-                  <Link href='/login'>Giriş Yap</Link>
+                  <Link href={process.env.NEXT_PUBLIC_LOGIN_PATH as string}>Giriş Yap</Link>
                 </Button>
                 <Button asChild>
-                  <Link href='/register'>Kayıt Ol</Link>
+                  <Link href={process.env.NEXT_PUBLIC_REGISTER_PATH as string}>Kayıt Ol</Link>
                 </Button>
               </>
             )}

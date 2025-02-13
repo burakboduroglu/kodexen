@@ -3,6 +3,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import { ModeToggle } from '@/components/theme/theme-toggle'
+import Footer from '@/components/custom/footer'
 
 export const metadata: Metadata = {
   title: 'Kodexen | Profil',
@@ -24,7 +25,10 @@ export default function RootLayout({
             <SidebarTrigger />
             <ModeToggle />
           </div>
-          {children}
+          <div className='flex flex-col flex-1'>
+            <div className='flex-1'>{children}</div>
+            <Footer />
+          </div>
         </div>
       </SidebarProvider>
     </ThemeProvider>

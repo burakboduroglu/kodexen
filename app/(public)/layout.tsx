@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import Navbar from '@/components/navbar/navbar'
+import Footer from '@/components/custom/footer'
 
 export const metadata: Metadata = {
   title: 'Kodexen | Ana Sayfa',
@@ -15,8 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-      <Navbar />
-      {children}
+      <div className='flex flex-col h-screen w-full'>
+        <Navbar />
+        <div className='flex flex-col flex-1'>
+          <div className='flex-1'>{children}</div>
+          <Footer />
+        </div>
+      </div>
     </ThemeProvider>
   )
 }
