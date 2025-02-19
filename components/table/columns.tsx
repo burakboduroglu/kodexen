@@ -1,7 +1,7 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-import { MoreHorizontal, ArrowUpDown, Trash2, Archive, Share, Heart, Tag } from 'lucide-react'
+import { MoreHorizontal, ArrowUpDown, Archive, Share, Heart, Tag, Eye, Trash } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -112,7 +112,7 @@ export const columns: ColumnDef<Post>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      const payment = row.original
+      const post = row.original as Post
 
       return (
         <DropdownMenu>
@@ -125,19 +125,31 @@ export const columns: ColumnDef<Post>[] = [
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>İşlemler</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-              className='text-blue-500'>
-              <Share />
-              Gönderini paylaş
+              onClick={(e) => {
+                e.stopPropagation()
+                window.location.href = `/profile/posts/${post.id}`
+              }}
+              className='cursor-pointer'>
+              <Eye className='mr-2 h-4 w-4' />
+              View Details
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                window.location.href = `/profile/posts/${post.id}?action=delete`
+              }}
+              className='cursor-pointer text-destructive'>
+              <Trash className='mr-2 h-4 w-4' />
+              Delete Post
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='text-red-500'>
-              <Trash2 />
-              Sil
-            </DropdownMenuItem>
-            <DropdownMenuItem className='text-yellow-500'>
-              <Archive />
+            <DropdownMenuItem onClick={(e) => e.stopPropagation()} className='text-yellow-500'>
+              <Archive className='mr-2 h-4 w-4' />
               Arşivle
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={(e) => e.stopPropagation()} className='text-blue-500'>
+              <Share className='mr-2 h-4 w-4' />
+              Paylaş
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
