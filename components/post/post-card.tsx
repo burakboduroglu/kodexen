@@ -13,7 +13,6 @@ import {
   User,
 } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { useState } from 'react'
