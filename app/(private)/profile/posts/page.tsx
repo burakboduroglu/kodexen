@@ -1,8 +1,14 @@
+'use client'
+
 import { columns } from '@/components/table/columns'
 import { DataTable } from '@/components/table/data-table'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 // Fetch data from API here.
-async function getData(): Promise<Post[]> {
+const getData = async (): Promise<Post[]> => {
+  // Simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 1500))
   return [
     {
       id: '728ed52f',
@@ -41,18 +47,41 @@ async function getData(): Promise<Post[]> {
   ]
 }
 
-export default async function DemoPage() {
-  const data = await getData()
+export default function PostsPage() {
+  const router = useRouter()
+  const [posts, setPosts] = useState<Post[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const data = await getData()
+        setPosts(data)
+      } catch (error) {
+        console.error('Failed to fetch posts:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  const handleRowClick = (row: Post) => {
+    router.push(`/profile/posts/${row.id}`)
+  }
 
   return (
     <div className='container mx-auto p-5'>
       <h1>
         <span className='text-lg font-bold'>Gönderiler</span>
         <p>
-          <span className='text-sm text-gray-500'>{data.length} gönderi bulundu</span>
+          <span className='text-sm text-gray-500'>
+            {isLoading ? 'Yükleniyor...' : `${posts.length} gönderi bulundu`}
+          </span>
         </p>
       </h1>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={posts} onRowClick={handleRowClick} isLoading={isLoading} />
     </div>
   )
 }
