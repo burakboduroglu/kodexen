@@ -25,10 +25,6 @@ const data = {
           url: '/feed',
         },
         {
-          title: 'Paylaş',
-          url: '/settings/share',
-        },
-        {
           title: 'Kaydedilenler',
           url: '/settings/bookmarks',
         },

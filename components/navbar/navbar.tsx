@@ -1,17 +1,16 @@
 'use client'
 
 import { useState } from 'react'
-import { Code2, Menu, Search } from 'lucide-react'
+import { CircleX, Code2, Menu, Search, User } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
-import Image from 'next/image'
 import { ModeToggle } from '../theme/theme-toggle'
 
 export default function Navbar() {
-  const [isLoggedIn] = useState(false) // Bu durumu auth sisteminizle değiştirin
+  const [isLoggedIn] = useState(true) // Bu durumu auth sisteminizle değiştirin
 
   return (
     <nav className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
@@ -44,13 +43,19 @@ export default function Navbar() {
               {/* Mobile Auth Section */}
               <div className='space-y-2'>
                 {isLoggedIn ? (
-                  <div className='flex items-center gap-2 px-2'>
-                    <Image
-                      src='/placeholder.svg?height=32&width=32'
-                      alt='Profile'
-                      className='h-8 w-8 rounded-full'
-                    />
-                    <span className='text-sm font-medium'>Profilim</span>
+                  <div className='flex gap-4 flex-col'>
+                    <div className='text-red-600 flex gap-2 items-center'>
+                      <Button variant='outline' size='icon'>
+                        <CircleX className='w-8 h-8' />
+                      </Button>
+                      <p className='text-sm'>Çıkış Yap</p>
+                    </div>
+                    <div className='flex gap-2 items-center'>
+                      <Button variant='outline' size='icon'>
+                        <User className='w-8 h-8' />
+                      </Button>
+                      <p className='text-sm'>Profile Git</p>
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -79,24 +84,22 @@ export default function Navbar() {
             <Search className='absolute left-2 top-2.5 h-4 w-4 text-muted-foreground' />
             <input
               placeholder='Kod, proje veya geliştirici ara...'
-              className='w-11/12 sm:w-full rounded-md border bg-background px-8 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+              className='w-full sm:w-full rounded-md border bg-background px-8 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
             />
           </div>
         </div>
 
         {/* Theme Toggle and Desktop Auth */}
-        <div className='ml-auto flex items-center gap-4'>
+        <div className='hidden ml-auto lg:flex items-center gap-4'>
+          <Button variant='outline' size='icon' className='text-red-600'>
+            <CircleX className='w-8 h-8' />
+          </Button>
           <ModeToggle />
           {/* Desktop Auth Buttons / Profile */}
           <div className='hidden lg:flex lg:items-center lg:gap-4'>
             {isLoggedIn ? (
-              <Button variant='ghost' size='icon' className='rounded-full'>
-                <Image
-                  src='/placeholder.svg?height=32&width=32'
-                  alt='Profile'
-                  className='h-8 w-8 rounded-full'
-                />
-                <span className='sr-only'>Profilim</span>
+              <Button variant='outline' size='icon'>
+                <User className='w-8 h-8' />
               </Button>
             ) : (
               <>
