@@ -10,6 +10,7 @@ import {
   Link as LinkIcon,
   Copy,
   Check,
+  User,
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -39,8 +40,8 @@ export function PostCard({ post, isDetailsView = false }: PostCardProps) {
         !isDetailsView ? 'hover:bg-accent/50 transition-colors cursor-pointer' : ''
       }`}>
       <div className='flex gap-4'>
-        <Avatar className='w-10 h-10'>
-          <Image src={post.author.avatar} alt={post.author.name} width={40} height={40} />
+        <Avatar className='w-10 h-10 border border-primary flex justify-center items-center'>
+          <User />
         </Avatar>
         <div className='flex-1'>
           <div className='flex items-center gap-2'>

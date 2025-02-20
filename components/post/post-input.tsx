@@ -2,10 +2,16 @@
 
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Code, Tag, X, Copy, Check, Link as LinkIcon, Loader2 } from 'lucide-react'
+import { Code, Tag, X, Copy, Check, Link as LinkIcon, Loader2, User } from 'lucide-react'
 import Image from 'next/image'
 import { CodeShareDialog } from './code-share-dialog'
 import { LinkPreviewDialog } from './link-preview-dialog'
@@ -17,7 +23,11 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 export default function PostInput() {
   const [content, setContent] = useState('')
   const [codeSnippet, setCodeSnippet] = useState<{ code: string; language: string } | null>(null)
-  const [linkPreview, setLinkPreview] = useState<{ url: string; title: string; image: string } | null>(null)
+  const [linkPreview, setLinkPreview] = useState<{
+    url: string
+    title: string
+    image: string
+  } | null>(null)
   const [tags, setTags] = useState<string[]>([])
   const [tagInput, setTagInput] = useState('')
   const [isTagDialogOpen, setIsTagDialogOpen] = useState(false)
@@ -30,14 +40,14 @@ export default function PostInput() {
     e.preventDefault()
     const newTag = tagInput.trim().toLowerCase()
     if (newTag && !tags.includes(newTag)) {
-      setTags(prev => [...prev, newTag])
+      setTags((prev) => [...prev, newTag])
       setTagInput('')
       setIsTagDialogOpen(false)
     }
   }
 
   const handleRemoveTag = (tagToRemove: string) => {
-    setTags(prev => prev.filter(tag => tag !== tagToRemove))
+    setTags((prev) => prev.filter((tag) => tag !== tagToRemove))
   }
 
   const handleCodeShare = (code: string, language: string) => {
@@ -51,12 +61,12 @@ export default function PostInput() {
       title: 'Loading preview...',
       image: '',
     })
-    
+
     try {
       // Here you would typically fetch the link preview data
       // For now, we'll simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      setLinkPreview(prev => ({
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      setLinkPreview((prev) => ({
         ...prev!,
         title: 'Preview Title', // This would come from your API
       }))
@@ -76,8 +86,8 @@ export default function PostInput() {
   return (
     <div className='p-4'>
       <div className='flex gap-4'>
-        <Avatar className='w-10 h-10'>
-          <Image src='' alt='Your avatar' width={40} height={40} />
+        <Avatar className='w-10 h-10 border border-primary flex justify-center items-center'>
+          <User />
         </Avatar>
         <div className='flex-1'>
           <Textarea
@@ -109,7 +119,7 @@ export default function PostInput() {
               <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-2'>
                   {isLinkLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                    <Loader2 className='h-4 w-4 animate-spin text-muted-foreground' />
                   ) : (
                     <LinkIcon className='w-4 h-4 text-muted-foreground' />
                   )}
@@ -123,8 +133,7 @@ export default function PostInput() {
                 href={linkPreview.url}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-sm text-muted-foreground hover:underline mt-1 block'
-              >
+                className='text-sm text-muted-foreground hover:underline mt-1 block'>
                 {linkPreview.url}
               </a>
             </div>
