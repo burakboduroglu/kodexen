@@ -26,26 +26,26 @@ const data = {
         },
         {
           title: 'Paylaş',
-          url: '/profile/share',
+          url: '/settings/share',
         },
         {
           title: 'Kaydedilenler',
-          url: '/dashboard/bookmarks',
+          url: '/settings/bookmarks',
         },
       ],
     },
     {
       title: 'Profil',
-      url: '/profile',
+      url: '/settings',
       icon: Frame,
       items: [
         {
           title: 'Bilgilerim',
-          url: '/profile/info',
+          url: '/settings/info',
         },
         {
           title: 'Paylaşımlarım',
-          url: '/profile/posts',
+          url: '/settings/posts',
         },
       ],
     },

@@ -45,9 +45,7 @@ export function PostCard({ post, isDetailsView = false }: PostCardProps) {
         </Avatar>
         <div className='flex-1'>
           <div className='flex items-center gap-2'>
-            <Link
-              href={`/profile/${post.author.username}`}
-              className='font-semibold hover:underline'>
+            <Link href={`/u/${post.author.username}`} className='font-semibold hover:underline'>
               {post.author.name}
             </Link>
             <span className='text-muted-foreground text-sm'>@{post.author.username}</span>

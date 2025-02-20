@@ -68,7 +68,7 @@ export default function PostsPage() {
   }, [])
 
   const handleRowClick = (row: Post) => {
-    router.push(`/profile/posts/${row.id}`)
+    router.push(`/settings/posts/${row.id}`)
   }
 
   return (

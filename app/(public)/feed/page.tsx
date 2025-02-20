@@ -77,7 +77,7 @@ export default function FeedPage() {
   const router = useRouter()
 
   const handlePostClick = (postId: string) => {
-    router.push(`/profile/posts/${postId}`)
+    router.push(`/p/${postId}`)
   }
 
   return (
