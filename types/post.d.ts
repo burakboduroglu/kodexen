@@ -13,13 +13,4 @@ type Post = {
   shares: number
   tags: string[]
   status: 'Taslak' | 'Yayında' | 'Arşivlendi'
-  codeSnippet?: {
-    code: string
-    language: string
-  }
-  linkPreview?: {
-    url: string
-    title: string
-    image: string
-  }
 }
