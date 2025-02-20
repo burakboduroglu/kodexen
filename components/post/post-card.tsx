@@ -1,7 +1,7 @@
-"use client";
-import { Avatar } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
-import { formatDistanceToNow } from "date-fns";
+'use client'
+import { Avatar } from '@/components/ui/avatar'
+import { Card } from '@/components/ui/card'
+import { formatDistanceToNow } from 'date-fns'
 import {
   MessageCircle,
   Heart,
@@ -11,110 +11,84 @@ import {
   Copy,
   Check,
   User,
-} from "lucide-react";
-import Link from "next/link";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from 'lucide-react'
+import Link from 'next/link'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 interface PostCardProps {
-  post: Post;
-  isDetailsView?: boolean;
+  post: Post
+  isDetailsView?: boolean
 }
 
 export function PostCard({ post, isDetailsView = false }: PostCardProps) {
-  const [isCopied, setIsCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false)
 
   const handleCopyCode = async (code: string) => {
-    await navigator.clipboard.writeText(code);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
+    await navigator.clipboard.writeText(code)
+    setIsCopied(true)
+    setTimeout(() => setIsCopied(false), 2000)
+  }
 
   return (
-    <Card
-      className={`p-4 ${
-        !isDetailsView
-          ? "hover:bg-accent/50 transition-colors cursor-pointer"
-          : ""
-      }`}
-    >
-      <div className="flex gap-4">
-        <Avatar className="w-10 h-10 border border-primary flex justify-center items-center">
+    <Card className={`pl-4 pr-4 pt-4 ${!isDetailsView ? 'cursor-pointer border-none' : ''}`}>
+      <div className='flex gap-4 border-b-2 pb-4'>
+        <Avatar className='w-10 h-10 border border-primary flex justify-center items-center'>
           <User />
         </Avatar>
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <Link
-              href={`/u/${post.author.username}`}
-              className="font-semibold hover:underline"
-            >
+        <div className='flex-1'>
+          <div className='flex items-center gap-2'>
+            <Link href={`/u/${post.author.username}`} className='font-semibold hover:underline'>
               {post.author.name}
             </Link>
-            <span className="text-muted-foreground text-sm">
-              @{post.author.username}
-            </span>
-            <span className="text-muted-foreground text-sm">·</span>
-            <span className="text-muted-foreground text-sm">
+            <span className='text-muted-foreground text-sm'>@{post.author.username}</span>
+            <span className='text-muted-foreground text-sm'>·</span>
+            <span className='text-muted-foreground text-sm'>
               {formatDistanceToNow(new Date(post.createdAt))}
             </span>
           </div>
 
-          <p className="mt-2 text-sm">{post.content}</p>
+          <p className='mt-2 text-sm'>{post.content}</p>
 
           {post.linkPreview && (
-            <div className="mt-4 border rounded-md p-4">
-              <div className="flex items-center gap-2">
-                <LinkIcon className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm font-medium">
-                  {post.linkPreview.title}
-                </span>
+            <div className='mt-4 border rounded-md p-4'>
+              <div className='flex items-center gap-2'>
+                <LinkIcon className='w-4 h-4 text-muted-foreground' />
+                <span className='text-sm font-medium'>{post.linkPreview.title}</span>
               </div>
               <a
                 href={post.linkPreview.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:underline mt-1 block"
-              >
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-sm text-muted-foreground hover:underline mt-1 block'>
                 {post.linkPreview.url}
               </a>
             </div>
           )}
 
           {post.codeSnippet && (
-            <div className="mt-4 rounded-md overflow-hidden">
-              <div className="flex justify-between items-center bg-muted px-4 py-2">
-                <span className="text-sm font-medium">
-                  {post.codeSnippet.language}
-                </span>
+            <div className='mt-4 rounded-md overflow-hidden'>
+              <div className='flex justify-between items-center bg-muted px-4 py-2'>
+                <span className='text-sm font-medium'>{post.codeSnippet.language}</span>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
+                        variant='ghost'
+                        size='sm'
+                        className='h-8 w-8 p-0'
                         onClick={(e) => {
-                          e.stopPropagation();
-                          handleCopyCode(post.codeSnippet!.code);
-                        }}
-                      >
-                        {isCopied ? (
-                          <Check className="h-4 w-4" />
-                        ) : (
-                          <Copy className="h-4 w-4" />
-                        )}
+                          e.stopPropagation()
+                          handleCopyCode(post.codeSnippet!.code)
+                        }}>
+                        {isCopied ? <Check className='h-4 w-4' /> : <Copy className='h-4 w-4' />}
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>{isCopied ? "Copied!" : "Copy code"}</p>
+                      <p>{isCopied ? 'Copied!' : 'Copy code'}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -124,47 +98,45 @@ export function PostCard({ post, isDetailsView = false }: PostCardProps) {
                 style={vscDarkPlus}
                 customStyle={{
                   margin: 0,
-                  borderRadius: "0 0 0.5rem 0.5rem",
-                }}
-              >
+                  borderRadius: '0 0 0.5rem 0.5rem',
+                }}>
                 {post.codeSnippet.code}
               </SyntaxHighlighter>
             </div>
           )}
 
           {post.tags.length > 0 && (
-            <div className="flex gap-2 mt-2">
+            <div className='flex gap-2 mt-2'>
               {post.tags.map((tag) => (
                 <Link
                   key={tag}
                   href={`/tag/${tag}`}
-                  className="text-primary hover:underline text-sm"
-                >
+                  className='text-primary hover:underline text-sm'>
                   #{tag}
                 </Link>
               ))}
             </div>
           )}
 
-          <div className="flex gap-6 mt-4">
-            <button className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-              <Heart className="w-4 h-4" />
-              <span className="text-sm">{post.likes}</span>
+          <div className='flex gap-6 mt-4'>
+            <button className='flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors'>
+              <Heart className='w-4 h-4' />
+              <span className='text-sm'>{post.likes}</span>
             </button>
-            <button className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-              <MessageCircle className="w-4 h-4" />
-              <span className="text-sm">{post.comments}</span>
+            <button className='flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors'>
+              <MessageCircle className='w-4 h-4' />
+              <span className='text-sm'>{post.comments}</span>
             </button>
-            <button className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-              <Share2 className="w-4 h-4" />
-              <span className="text-sm">{post.shares}</span>
+            <button className='flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors'>
+              <Share2 className='w-4 h-4' />
+              <span className='text-sm'>{post.shares}</span>
             </button>
-            <button className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors ml-auto">
-              <BookmarkPlus className="w-4 h-4" />
+            <button className='flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors ml-auto'>
+              <BookmarkPlus className='w-4 h-4' />
             </button>
           </div>
         </div>
       </div>
     </Card>
-  );
+  )
 }
