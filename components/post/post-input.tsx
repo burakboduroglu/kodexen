@@ -87,8 +87,8 @@ export default function PostInput() {
   }
 
   return (
-    <div className='p-4'>
-      <div className='flex gap-4'>
+    <div className='p-1 lg:p-4'>
+      <div className='hidden lg:flex gap-4'>
         <Avatar className='w-10 h-10 border border-primary flex justify-center items-center'>
           <User />
         </Avatar>
