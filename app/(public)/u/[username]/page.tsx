@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -48,7 +47,7 @@ export default async function UserProfilePage() {
       comments: 3,
       shares: 7,
       tags: ["WebDev", "Performance"],
-      status: "Yayında",
+      status: "Yayında" as const,
       linkPreview: {
         url: "",
         title: "WebAssembly Developer's Guide",
@@ -67,16 +66,14 @@ export default async function UserProfilePage() {
       <div className="relative w-full h-[100px] md:h-[200px] mb-8 rounded-b-lg overflow-hidden bg-purple-900">
         {/* Profile Image - Positioned over the cover image */}
         <div className="absolute pt-20 left-8">
-          <div className="relative h-28 w-28 border-2 border-background rounded-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-600 to-red-900 dark:from-red-800 dark:to-red-300 rounded-full" />
-            {user.avatar && (
-              <Image
-                src={user.avatar}
-                alt={`${user.name}'s profile picture`}
-                fill
-                className="rounded-full object-cover"
-              />
-            )}
+          <div className="relative h-28 w-28 rounded-full">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 dark:from-purple-600 dark:to-pink-400 rounded-full shadow-lg">
+              {user.name && (
+                <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
+                  {user.name.charAt(0)}
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {/* Follow Button */}
