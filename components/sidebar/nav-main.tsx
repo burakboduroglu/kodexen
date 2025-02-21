@@ -1,7 +1,6 @@
 'use client'
 
-import { ChevronRight, Rotate3d, type LucideIcon } from 'lucide-react'
-
+import { ChevronRight, Rotate3d } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   SidebarGroup,
@@ -13,16 +12,16 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar'
-import { Settings } from '@/types/settings'
+import { MenuItem, Settings, SubItem } from '@/types/settings'
 
-export function NavMain({ items }): Settings {
+export function NavMain({ items }: Settings) {
   return (
     <SidebarGroup>
       <SidebarHeader className='flex items-center justify-start gap-2 p-4'>
         <Rotate3d className='h-6 w-6' />
       </SidebarHeader>
       <SidebarMenu className='pt-3'>
-        {items.map((item) => (
+        {items.map((item: MenuItem) => (
           <Collapsible
             key={item.title}
             asChild
@@ -43,7 +42,7 @@ export function NavMain({ items }): Settings {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
+                  {item.items?.map((subItem: SubItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
                         <a href={subItem.url}>

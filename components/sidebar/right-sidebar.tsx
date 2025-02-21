@@ -3,31 +3,7 @@
 import { useSidebar } from '@/contexts/sidebar-context'
 import { Button } from '../ui/button'
 import { Ellipsis } from 'lucide-react'
-
-const dummyTags = [
-  { name: 'JavaScript', count: 1234 },
-  { name: 'React', count: 890 },
-  { name: 'TypeScript', count: 756 },
-  { name: 'NextJS', count: 543 },
-  { name: 'TailwindCSS', count: 432 },
-]
-
-const suggestedUsers = [
-  {
-    id: 'u4',
-    name: 'John Doe',
-    username: 'johndoe',
-    avatar: '',
-    bio: 'Senior Frontend Developer',
-  },
-  {
-    id: 'u5',
-    name: 'Jane Smith',
-    username: 'janesmith',
-    avatar: '',
-    bio: 'Full Stack Developer',
-  },
-]
+import { dummyTags, suggestedUsers } from '@/lib/mock'
 
 export function RightSidebar() {
   const { isRightSidebarOpen } = useSidebar()

@@ -118,3 +118,28 @@ export const users: User[] = [
     },
   },
 ]
+
+export const dummyTags = [
+  { name: 'JavaScript', count: 1234 },
+  { name: 'React', count: 890 },
+  { name: 'TypeScript', count: 756 },
+  { name: 'NextJS', count: 543 },
+  { name: 'TailwindCSS', count: 432 },
+]
+
+export const suggestedUsers = [
+  {
+    id: 'u4',
+    name: 'John Doe',
+    username: 'johndoe',
+    avatar: '',
+    bio: 'Senior Frontend Developer',
+  },
+  {
+    id: 'u5',
+    name: 'Jane Smith',
+    username: 'janesmith',
+    avatar: '',
+    bio: 'Full Stack Developer',
+  },
+]
