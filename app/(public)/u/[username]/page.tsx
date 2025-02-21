@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { PostCard } from '@/components/post/post-card'
 import { GitHubLogoIcon, TwitterLogoIcon, LinkedInLogoIcon, GlobeIcon } from '@radix-ui/react-icons'
-import { UserPlus, UserRoundCheck } from 'lucide-react'
+import { HeartIcon, UserPlus, UserRoundCheck } from 'lucide-react'
 import { posts, users } from '@/lib/mock'
 
 export default async function UserProfilePage() {
@@ -40,19 +40,22 @@ export default async function UserProfilePage() {
               <div className='text-center'>
                 <p className='flex flex-col justify-center items-center text-sm text-muted-foreground'>
                   <UserRoundCheck />
-                  Followers
+                  Takipçiler
                 </p>
                 <span className='text-xl font-semibold'>{user.followers}</span>
               </div>
               <div className='text-center'>
                 <p className='flex flex-col justify-center items-center text-sm text-muted-foreground'>
                   <UserPlus />
-                  Following
+                  Takip edilenler
                 </p>
                 <span className='text-xl font-semibold'>{user.following}</span>
               </div>
             </div>
-            <Button variant='default'>Follow</Button>
+            <Button variant='default'>
+              <HeartIcon className='w-5 h-5 mr-2' />
+              Takip Et
+            </Button>
           </div>
         </div>
       </div>
@@ -105,9 +108,9 @@ export default async function UserProfilePage() {
         {/* Tabs Section */}
         <Tabs defaultValue='posts' className='mt-1 mb-6'>
           <TabsList className='w-full justify-start border-b rounded-none'>
-            <TabsTrigger value='posts'>Posts</TabsTrigger>
-            <TabsTrigger value='likes'>Likes</TabsTrigger>
-            <TabsTrigger value='about'>About</TabsTrigger>
+            <TabsTrigger value='posts'>Gönderiler</TabsTrigger>
+            <TabsTrigger value='likes'>Beğeniler</TabsTrigger>
+            <TabsTrigger value='about'>Hakkında</TabsTrigger>
           </TabsList>
 
           <TabsContent value='posts' className='mt-6 space-y-4'>
@@ -118,14 +121,16 @@ export default async function UserProfilePage() {
 
           <TabsContent value='likes' className='mt-6'>
             <Card className='p-4'>
-              <p className='text-center text-muted-foreground'>Liked posts will appear here</p>
+              <p className='text-center text-muted-foreground'>
+                Beğendiğiniz gönderiler burada listelenecek.
+              </p>
             </Card>
           </TabsContent>
 
           <TabsContent value='about' className='mt-6'>
             <Card className='p-6'>
-              <h3 className='text-lg font-semibold mb-4'>Bookmarks</h3>
-              <p className='text-muted-foreground'>Bookmarks</p>
+              <h3 className='text-lg font-semibold mb-4'>Kaydedilenler</h3>
+              <p className='text-muted-foreground'>Kaydedilen gönderiler.</p>
             </Card>
           </TabsContent>
         </Tabs>
