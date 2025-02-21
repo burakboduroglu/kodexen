@@ -71,7 +71,7 @@ export default async function PostDetailsPage({
     <div className='container max-w-2xl mx-auto py-4 px-4'>
       <div className='flex items-center justify-between mb-6'>
         <Button variant='ghost' asChild>
-          <Link href='/profile/posts'>
+          <Link href='/settings/posts'>
             <ArrowLeft className='w-4 h-4 mr-2' />
             Gönderilere Geri Dön
           </Link>
