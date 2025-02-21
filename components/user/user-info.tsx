@@ -65,6 +65,21 @@ export default function UserInfo() {
             </div>
 
             <div className='grid gap-2'>
+              <Label htmlFor='website'>GitHub</Label>
+              <Input id='website' type='url' placeholder='https://' />
+            </div>
+
+            <div className='grid gap-2'>
+              <Label htmlFor='website'>Linkedin</Label>
+              <Input id='website' type='url' placeholder='https://' />
+            </div>
+
+            <div className='grid gap-2'>
+              <Label htmlFor='website'>X</Label>
+              <Input id='website' type='url' placeholder='https://' />
+            </div>
+
+            <div className='grid gap-2'>
               <Label>Profil Gizliliği</Label>
               <Select defaultValue='public'>
                 <SelectTrigger>
