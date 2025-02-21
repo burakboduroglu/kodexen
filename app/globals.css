@@ -10,6 +10,17 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 @layer base {
@@ -110,7 +121,7 @@ body {
     pre {
       background: #0d0d0d;
       color: #fff;
-      font-family: "JetBrainsMono", monospace;
+      font-family: 'JetBrainsMono', monospace;
       padding: 0.75rem 1rem;
       border-radius: 0.5rem;
 

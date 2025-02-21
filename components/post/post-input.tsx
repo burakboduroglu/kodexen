@@ -86,8 +86,10 @@ export default function PostInput() {
     setTimeout(() => setIsCodeCopied(false), 2000)
   }
 
+  const isLoggedIn = true
+
   return (
-    <div className='p-1 lg:p-4'>
+    <div className={isLoggedIn ? 'p-1 lg:p-4' : 'hidden'}>
       <div className='hidden lg:flex gap-4'>
         <Avatar className='w-10 h-10 border border-primary flex justify-center items-center'>
           <User />
