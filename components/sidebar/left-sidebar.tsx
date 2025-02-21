@@ -1,11 +1,6 @@
 'use client'
 
-import { Home, Settings, User } from 'lucide-react'
-import Link from 'next/link'
-import { useSidebar } from '@/contexts/sidebar-context'
-
 export function LeftSidebar() {
-  const { isLeftSidebarOpen } = useSidebar()
 
   return (
     <aside className='hidden lg:block w-[320px] flex-none'>
