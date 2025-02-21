@@ -14,10 +14,11 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { ModeToggle } from '../theme/theme-toggle'
+import NavbarTools from './navbar-tools'
 
 export default function Navbar() {
   const isLoggedIn = true
+  const currentUser = 'burakboduroglu'
 
   return (
     <>
@@ -44,12 +45,16 @@ export default function Navbar() {
                   {isLoggedIn ? (
                     <>
                       <Button variant='outline' className='justify-start gap-2'>
-                        <User className='h-5 w-5' />
-                        Profile Git
+                        <Link href={`u/${currentUser}`}>
+                          <User className='h-6 w-6 sm:h-8 sm:w-8' />
+                          Profile Git
+                        </Link>
                       </Button>
                       <Button variant='outline' className='justify-start gap-2 text-red-600'>
-                        <CircleX className='h-5 w-5' />
-                        Çıkış Yap
+                        <Link href={process.env.NEXT_PUBLIC_LOGIN_PATH as string}>
+                          <CircleX className='h-6 w-6 sm:h-8 sm:w-8' />
+                          Çıkış Yap
+                        </Link>
                       </Button>
                     </>
                   ) : (
@@ -68,7 +73,7 @@ export default function Navbar() {
           </Sheet>
 
           {/* Logo */}
-          <Link href='/' className='flex items-center gap-2 text-lg sm:text-xl font-bold'>
+          <Link href='/feed' className='flex items-center gap-2 text-lg sm:text-xl font-bold'>
             <Code2 className='h-5 w-5 sm:h-6 sm:w-6' />
             <span className='hidden sm:inline-block'>Kodexen</span>
           </Link>
@@ -87,23 +92,7 @@ export default function Navbar() {
           {/* Theme Toggle and Desktop Auth */}
           <div className='flex items-center gap-2 sm:gap-4'>
             {isLoggedIn ? (
-              <>
-                <Button
-                  variant='outline'
-                  size='icon'
-                  className='text-red-600 hidden sm:inline-flex'
-                  title='Çıkış yap'>
-                  <CircleX className='h-6 w-6 sm:h-8 sm:w-8' />
-                </Button>
-                <ModeToggle />
-                <Button
-                  variant='outline'
-                  size='icon'
-                  title='Profile git'
-                  className=' hidden sm:inline-flex'>
-                  <User className='h-6 w-6 sm:h-8 sm:w-8' />
-                </Button>
-              </>
+              <NavbarTools />
             ) : (
               <>
                 <Button variant='ghost' asChild>

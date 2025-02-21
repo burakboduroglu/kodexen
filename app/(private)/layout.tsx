@@ -2,10 +2,8 @@ import type { Metadata } from 'next'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
 import { ThemeProvider } from '@/components/theme/theme-provider'
-import { ModeToggle } from '@/components/theme/theme-toggle'
 import Footer from '@/components/custom/footer'
-import { Button } from '@/components/ui/button'
-import { CircleX, User } from 'lucide-react'
+import NavbarTools from '@/components/navbar/navbar-tools'
 
 export const metadata: Metadata = {
   title: 'Kodexen | Profil',
@@ -26,21 +24,7 @@ export default function RootLayout({
           <div className='flex items-center justify-between p-4 border-b border-gray-200'>
             <SidebarTrigger />
             <div className='flex gap-3'>
-              <Button
-                variant='outline'
-                size='icon'
-                className='text-red-600 hidden sm:inline-flex'
-                title='Çıkış yap'>
-                <CircleX className='h-6 w-6 sm:h-8 sm:w-8' />
-              </Button>
-              <ModeToggle />
-              <Button
-                variant='outline'
-                size='icon'
-                title='Profile git'
-                className=' hidden sm:inline-flex'>
-                <User className='h-6 w-6 sm:h-8 sm:w-8' />
-              </Button>
+              <NavbarTools />
             </div>
           </div>
           <div className='flex flex-col flex-1'>
