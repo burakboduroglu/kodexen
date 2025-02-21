@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { PostCard } from '@/components/post/post-card'
 import { GitHubLogoIcon, TwitterLogoIcon, LinkedInLogoIcon, GlobeIcon } from '@radix-ui/react-icons'
-import { HeartIcon, UserPlus, UserRoundCheck } from 'lucide-react'
+import { Calendar, HeartIcon, MapPin } from 'lucide-react'
 import { posts, users } from '@/lib/mock'
 
 export default async function UserProfilePage() {
@@ -16,13 +16,13 @@ export default async function UserProfilePage() {
   }
 
   return (
-    <main className='container max-w-4xl mx-auto'>
+    <main className='container max-w-3xl mx-auto'>
       {/* Cover Image */}
-      <div className='relative w-full h-[100px] md:h-[200px] mb-8 rounded-b-lg overflow-hidden bg-purple-900'>
+      <div className='relative w-full h-[100px] md:h-[200px] mb-8 rounded-b-lg overflow-hidden bg-gradient-to-br from-gray-500 to-gray-500 dark:from-gary-400 dark:to-gray-900 shadow-lg'>
         {/* Profile Image - Positioned over the cover image */}
         <div className='absolute pt-20 left-8'>
           <div className='relative h-28 w-28 rounded-full'>
-            <div className='absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 dark:from-purple-600 dark:to-pink-400 rounded-full shadow-lg'>
+            <div className='absolute inset-0 bg-black rounded-full shadow-lg'>
               {user.name && (
                 <div className='w-full h-full flex items-center justify-center text-white text-2xl font-bold'>
                   {user.name.charAt(0)}
@@ -34,26 +34,9 @@ export default async function UserProfilePage() {
 
         {/* Follow Button */}
         <div className='absolute bottom-4 right-4'>
-          <div className='flex items-center gap-10'>
-            {/* Stats */}
-            <div className='flex gap-6 mt-4'>
-              <div className='text-center'>
-                <p className='flex flex-col justify-center items-center text-sm text-muted-foreground'>
-                  <UserRoundCheck />
-                  Takipçiler
-                </p>
-                <span className='text-xl font-semibold'>{user.followers}</span>
-              </div>
-              <div className='text-center'>
-                <p className='flex flex-col justify-center items-center text-sm text-muted-foreground'>
-                  <UserPlus />
-                  Takip edilenler
-                </p>
-                <span className='text-xl font-semibold'>{user.following}</span>
-              </div>
-            </div>
+          <div className='flex items-center justify-center'>
             <Button variant='default'>
-              <HeartIcon className='w-5 h-5 mr-2' />
+              <HeartIcon className='w-5 h-5 text-red-700' />
               Takip Et
             </Button>
           </div>
@@ -61,11 +44,12 @@ export default async function UserProfilePage() {
       </div>
 
       {/* Header */}
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-3'>
         <div className='flex flex-col gap-2'>
           <div className='flex items-center gap-4 justify-between'>
-            <div>
+            <div className='flex flex-col'>
               <h1 className='text-3xl font-bold'>{user.name}</h1>
+              <p className='text-muted-foreground'>@{user.username}</p>
             </div>
             {/* Social Links */}
             <div className='flex gap-4'>
@@ -93,15 +77,32 @@ export default async function UserProfilePage() {
           </div>
 
           {/* User Info Section */}
-          <div className='flex flex-col gap-2'>
-            <p className='text-muted-foreground'>@{user.username}</p>
+          <div className='flex flex-col'>
             {user.bio && <p className='mt-2 text-pretty'>{user.bio}</p>}
           </div>
 
           {/* Location and Join Date */}
           <div className='flex gap-6 items-center text-muted-foreground text-sm'>
-            {user.location && <span>{user.location}</span>}
-            <span>{user.joinDate}</span>
+            <div className='flex gap-1'>
+              <MapPin className='w-4 h-4 inline-block' />
+              {user.location && <span>{user.location}</span>}
+            </div>
+            <div className='flex gap-1'>
+              <Calendar className='w-4 h-4 inline-block' />
+              <span>{user.joinDate} tarihinde üye oldu</span>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className='flex gap-6 mt-4'>
+            <div className='flex gap-1 text-sm text-muted-foreground'>
+              <span className='text-white'>{user.followers}</span>
+              <p>takipçi</p>
+            </div>
+            <div className='flex gap-1 text-sm text-muted-foreground'>
+              <span className='text-white'>{user.following}</span>
+              <p>takip edilen</p>
+            </div>
           </div>
         </div>
 
