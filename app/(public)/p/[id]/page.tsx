@@ -2,25 +2,10 @@ import { PostCard } from '@/components/post/post-card'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { posts } from '@/lib/mock'
 
 async function getPost(id: string): Promise<Post | null> {
-  const dummyPost: Post = {
-    id: id,
-    content:
-      "TypeScript ile geliştirdiğim yeni projemin kaynak kodlarını GitHub'da paylaştım! Göz atmak isteyenler için link yorumlarda 🚀 #typescript #opensource",
-    author: {
-      id: 'user123',
-      name: 'Burak Boduroglu',
-      username: 'burakboduroglu',
-      avatar: '',
-    },
-    createdAt: '2024-02-13',
-    likes: 42,
-    comments: 7,
-    shares: 3,
-    tags: ['typescript', 'opensource', 'webdev'],
-    status: 'Arşivlendi',
-  }
+  const dummyPost: Post = posts[0]
 
   return dummyPost
 }

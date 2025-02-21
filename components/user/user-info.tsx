@@ -18,13 +18,17 @@ import { Bell, Globe, Lock, User } from 'lucide-react'
 export default function UserInfo() {
   return (
     <div className='space-y-6'>
+      {/* Profile Information */}
       <Card>
+        {/* Card Header */}
         <CardHeader>
           <CardTitle>Profil Bilgileri</CardTitle>
           <CardDescription>
             Profilinizi güncelleyin ve kişisel bilgilerinizi yönetin
           </CardDescription>
         </CardHeader>
+
+        {/* Profile Content */}
         <CardContent className='space-y-4'>
           <div className='flex items-center gap-4'>
             <div className='h-20 w-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl font-bold text-white'>
@@ -33,6 +37,7 @@ export default function UserInfo() {
             <Button variant='outline'>Fotoğrafı Değiştir</Button>
           </div>
 
+          {/* Profile Information */}
           <div className='grid gap-4 pt-4'>
             <div className='grid gap-2'>
               <Label htmlFor='name'>İsim</Label>
@@ -109,17 +114,22 @@ export default function UserInfo() {
             </div>
           </div>
 
+          {}
           <div className='flex justify-end pt-4'>
             <Button>Değişiklikleri Kaydet</Button>
           </div>
         </CardContent>
       </Card>
 
+      {/* Notification Preferences */}
       <Card>
+        {/* Card Header */}
         <CardHeader>
           <CardTitle>Bildirim Tercihleri</CardTitle>
           <CardDescription>Hangi konularda bildirim almak istediğinizi seçin</CardDescription>
         </CardHeader>
+
+        {/* Card Content */}
         <CardContent className='space-y-6'>
           <div className='flex items-center justify-between space-x-2'>
             <div className='flex gap-2'>
