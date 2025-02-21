@@ -47,9 +47,7 @@ export function RightSidebar() {
                 className='flex items-center justify-between hover:bg-accent/50 rounded-lg cursor-pointer transition-colors p-2'>
                 <div className='flex flex-col'>
                   <span className='font-medium'>{tag.name}</span>
-                  <span className='text-xs text-muted-foreground'>
-                    {tag.count.toLocaleString()} gönderi
-                  </span>
+                  <span className='text-xs text-muted-foreground'>{tag.count} gönderi</span>
                 </div>
                 <Ellipsis className='h-5 w-5 text-muted-foreground' />
               </div>
