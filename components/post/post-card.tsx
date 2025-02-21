@@ -33,6 +33,9 @@ export function PostCard({ post, isDetailsView = false }: PostCardProps) {
     setTimeout(() => setIsCopied(false), 2000)
   }
 
+  // Remove hashtags from content
+  const contentWithoutTags = post.content.replace(/#\w+\s?/g, '').trim()
+
   return (
     <Card className={`pl-4 pr-4 pt-4 ${!isDetailsView ? 'cursor-pointer border-none' : ''}`}>
       <div className='flex gap-4 border-b-2 pb-4'>
@@ -51,7 +54,7 @@ export function PostCard({ post, isDetailsView = false }: PostCardProps) {
             </span>
           </div>
 
-          <p className='mt-2 text-sm'>{post.content}</p>
+          <p className='mt-2 text-sm'>{contentWithoutTags}</p>
 
           {post.linkPreview && (
             <div className='mt-4 border rounded-md p-4'>
@@ -111,7 +114,7 @@ export function PostCard({ post, isDetailsView = false }: PostCardProps) {
                 <Link
                   key={tag}
                   href={`/tag/${tag}`}
-                  className='text-primary hover:underline text-sm'>
+                  className='text-blue-500 hover:underline text-sm'>
                   #{tag}
                 </Link>
               ))}

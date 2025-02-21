@@ -38,13 +38,13 @@ export function RightSidebar() {
     <aside className='w-80 pl-4 flex-none pt-4'>
       <div className='sticky top-0 h-screen flex flex-col'>
         {/* Trending Tags */}
-        <div className='bg-background rounded-lg mb-10 border border-border p-5'>
-          <h3 className='text-xl font-semibold mb-3'>Neler oluyor?</h3>
+        <div className='bg-background rounded-lg mb-10 border border-border p-3'>
+          <h3 className='text-xl font-semibold mb-1'>Neler oluyor?</h3>
           <div className='space-y-2'>
             {dummyTags.map((tag) => (
               <div
                 key={tag.name}
-                className='flex items-center justify-between hover:bg-accent/50 pt-2 rounded-lg cursor-pointer transition-colors'>
+                className='flex items-center justify-between hover:bg-accent/50 rounded-lg cursor-pointer transition-colors p-2'>
                 <div className='flex flex-col'>
                   <span>{tag.name}</span>
                   <span className='text-xs text-muted-foreground'>{tag.count} gönderi</span>
@@ -56,11 +56,13 @@ export function RightSidebar() {
         </div>
 
         {/* Who to follow */}
-        <div className='bg-background rounded-lg mb-10 border border-border p-5'>
-          <h3 className='text-xl font-semibold mb-4'>Kimi takip etmeli</h3>
-          <div className='space-y-4'>
+        <div className='bg-background rounded-lg mb-10 border border-border p-3'>
+          <h3 className='text-xl font-semibold mb-1'>Kimi takip etmeli</h3>
+          <div className='space-y-2'>
             {suggestedUsers.map((user) => (
-              <div key={user.id} className='flex items-center justify-between'>
+              <div
+                key={user.id}
+                className='flex items-center justify-between hover:bg-accent/50 rounded-lg cursor-pointer transition-colors p-2'>
                 <div className='flex items-center gap-3'>
                   <div className='w-10 h-10 rounded-full bg-accent' />
                   <div>
