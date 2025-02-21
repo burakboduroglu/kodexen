@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <nav className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
-      <div className='flex h-16 items-center px-4'>
+      <div className='flex h-14 sm:h-16 items-center px-2 sm:px-4'>
         {/* Mobile Menu Trigger */}
         <Sheet>
           <SheetTrigger asChild className='lg:hidden'>
@@ -23,40 +23,38 @@ export default function Navbar() {
               <span className='sr-only'>Aç</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side='left'>
-            <SheetHeader>
+          <SheetContent side='left' className='w-[280px] sm:w-[320px]'>
+            <SheetHeader className='pb-6'>
               <SheetTitle>Kodexen</SheetTitle>
             </SheetHeader>
-            <div className='mt-4 flex flex-col gap-2'>
-              <Button variant='ghost' asChild className='justify-start'>
-                <Link href='/feed'>Ana Sayfa</Link>
-              </Button>
-              <Button variant='ghost' asChild className='justify-start'>
-                <Link href='/explore'>Keşfet</Link>
-              </Button>
-              <Button variant='ghost' asChild className='justify-start'>
-                <Link href='/projects'>Projeler</Link>
-              </Button>
+            <div className='flex flex-col gap-4'>
+              <div className='flex flex-col gap-2'>
+                <Button variant='ghost' asChild className='justify-start'>
+                  <Link href='/feed'>Ana Sayfa</Link>
+                </Button>
+                <Button variant='ghost' asChild className='justify-start'>
+                  <Link href='/explore'>Keşfet</Link>
+                </Button>
+                <Button variant='ghost' asChild className='justify-start'>
+                  <Link href='/projects'>Projeler</Link>
+                </Button>
+              </div>
 
-              <Separator className='my-2' />
+              <Separator />
 
               {/* Mobile Auth Section */}
-              <div className='space-y-2'>
+              <div className='flex flex-col gap-4'>
                 {isLoggedIn ? (
-                  <div className='flex gap-4 flex-col'>
-                    <div className='text-red-600 flex gap-2 items-center'>
-                      <Button variant='outline' size='icon'>
-                        <CircleX className='w-8 h-8' />
-                      </Button>
-                      <p className='text-sm'>Çıkış Yap</p>
-                    </div>
-                    <div className='flex gap-2 items-center'>
-                      <Button variant='outline' size='icon'>
-                        <User className='w-8 h-8' />
-                      </Button>
-                      <p className='text-sm'>Profile Git</p>
-                    </div>
-                  </div>
+                  <>
+                    <Button variant='outline' className='justify-start gap-2'>
+                      <User className='h-5 w-5' />
+                      Profile Git
+                    </Button>
+                    <Button variant='outline' className='justify-start gap-2 text-red-600'>
+                      <CircleX className='h-5 w-5' />
+                      Çıkış Yap
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <Button variant='ghost' asChild className='w-full justify-start'>
@@ -73,33 +71,39 @@ export default function Navbar() {
         </Sheet>
 
         {/* Logo */}
-        <Link href='/' className='flex items-center gap-2 text-xl font-bold'>
-          <Code2 className='h-6 w-6 hidden sm:inline-block' />
+        <Link href='/' className='flex items-center gap-2 text-lg sm:text-xl font-bold'>
+          <Code2 className='h-5 w-5 sm:h-6 sm:w-6' />
           <span className='hidden sm:inline-block'>Kodexen</span>
         </Link>
 
         {/* Search Bar */}
-        <div className='ml-4 flex-1 lg:ml-8'>
-          <div className='relative max-w-md'>
-            <Search className='absolute left-2 top-2.5 h-4 w-4 text-muted-foreground' />
+        <div className='flex-1 px-2 sm:px-4'>
+          <div className='relative max-w-md mx-auto'>
+            <Search className='absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
             <input
               placeholder='Kod, proje veya geliştirici ara...'
-              className='w-full sm:w-full rounded-md border bg-background px-8 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+              className='w-full h-9 rounded-md border bg-background pl-8 pr-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
             />
           </div>
         </div>
 
         {/* Theme Toggle and Desktop Auth */}
-        <div className='hidden ml-auto lg:flex items-center gap-4'>
-          <Button variant='outline' size='icon' className='text-red-600' title='Çıkış yap'>
-            <CircleX className='w-8 h-8' />
-          </Button>
+        <div className='flex items-center gap-2 sm:gap-4'>
+          {isLoggedIn && (
+            <Button
+              variant='outline'
+              size='icon'
+              className='text-red-600 hidden sm:inline-flex'
+              title='Çıkış yap'>
+              <CircleX className='h-6 w-6 sm:h-8 sm:w-8' />
+            </Button>
+          )}
           <ModeToggle />
           {/* Desktop Auth Buttons / Profile */}
           <div className='hidden lg:flex lg:items-center lg:gap-4'>
             {isLoggedIn ? (
               <Button variant='outline' size='icon' title='Profile git'>
-                <User className='w-8 h-8' />
+                <User className='h-6 w-6 sm:h-8 sm:w-8' />
               </Button>
             ) : (
               <>

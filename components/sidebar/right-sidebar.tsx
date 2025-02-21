@@ -35,30 +35,32 @@ export function RightSidebar() {
   if (!isRightSidebarOpen) return null
 
   return (
-    <aside className='w-80 pl-4 flex-none pt-4'>
-      <div className='sticky top-0 h-screen flex flex-col'>
+    <aside className='hidden lg:block w-[320px] flex-none'>
+      <div className='sticky top-4 space-y-6 px-4'>
         {/* Trending Tags */}
-        <div className='bg-background rounded-lg mb-10 border border-border p-3'>
-          <h3 className='text-xl font-semibold mb-1'>Neler oluyor?</h3>
-          <div className='space-y-2'>
+        <div className='bg-background rounded-xl border border-border p-4'>
+          <h3 className='text-lg font-semibold mb-3'>Neler oluyor?</h3>
+          <div className='space-y-1'>
             {dummyTags.map((tag) => (
               <div
                 key={tag.name}
                 className='flex items-center justify-between hover:bg-accent/50 rounded-lg cursor-pointer transition-colors p-2'>
                 <div className='flex flex-col'>
-                  <span>{tag.name}</span>
-                  <span className='text-xs text-muted-foreground'>{tag.count} gönderi</span>
+                  <span className='font-medium'>{tag.name}</span>
+                  <span className='text-xs text-muted-foreground'>
+                    {tag.count.toLocaleString()} gönderi
+                  </span>
                 </div>
-                <Ellipsis />
+                <Ellipsis className='h-5 w-5 text-muted-foreground' />
               </div>
             ))}
           </div>
         </div>
 
         {/* Who to follow */}
-        <div className='bg-background rounded-lg mb-10 border border-border p-3'>
-          <h3 className='text-xl font-semibold mb-1'>Kimi takip etmeli</h3>
-          <div className='space-y-2'>
+        <div className='bg-background rounded-xl border border-border p-4'>
+          <h3 className='text-lg font-semibold mb-3'>Kimi takip etmeli</h3>
+          <div className='space-y-3'>
             {suggestedUsers.map((user) => (
               <div
                 key={user.id}
@@ -66,11 +68,11 @@ export function RightSidebar() {
                 <div className='flex items-center gap-3'>
                   <div className='w-10 h-10 rounded-full bg-accent' />
                   <div>
-                    <p className='font-semibold'>{user.name}</p>
+                    <p className='font-medium line-clamp-1'>{user.name}</p>
                     <p className='text-sm text-muted-foreground'>@{user.username}</p>
                   </div>
                 </div>
-                <Button variant='outline' size='sm' className='rounded-full bg-white text-black'>
+                <Button variant='outline' size='sm' className='ml-2 whitespace-nowrap'>
                   Takip Et
                 </Button>
               </div>
