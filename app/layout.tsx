@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import { SidebarProvider } from '@/contexts/sidebar-context'
+import { Toaster } from '@/components/ui/toaster'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning={true} className='no-scrollbar'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Toaster />
         <ThemeProvider
           attribute='class'
           defaultTheme='system'

@@ -21,7 +21,7 @@ export default async function PostDetailsPage({ params }: { params: { postId: st
           Bu gönderi silinmiş olabilir veya hiç var olmamış olabilir.
         </p>
         <Button asChild className='mt-4'>
-          <Link href='/profile/posts'>
+          <Link href='/feed'>
             <ArrowLeft className='w-4 h-4 mr-2' />
             Akışa Geri Dön
           </Link>

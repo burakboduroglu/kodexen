@@ -31,20 +31,28 @@ export function DeletePostButton({ postId, onDelete }: DeletePostButtonProps) {
   const handleDelete = async () => {
     try {
       setIsDeleting(true)
-      await onDelete(postId)
-      toast({
-        title: 'Post deleted',
-        description: 'Your post has been successfully deleted.',
-      })
-      router.push('/profile/posts')
+      const success = await onDelete(postId)
+
+      if (success) {
+        toast({
+          title: 'Gönderi silindi',
+          description: 'Gönderi başarıyla silindi.',
+          variant: 'success',
+          duration: 3000,
+        })
+        setIsOpen(false)
+        router.push('/settings/posts')
+      }
     } catch (error) {
+      console.error('Silme işlemi başarısız oldu: ', error)
       toast({
-        title: 'Error',
-        description: 'Failed to delete the post. Please try again.',
+        title: 'Hata',
+        description: 'Gönderi silinirken bir hata oluştu. Lütfen tekrar deneyin.',
         variant: 'destructive',
+        duration: 3000,
       })
+    } finally {
       setIsDeleting(false)
-      setIsOpen(false)
     }
   }
 
