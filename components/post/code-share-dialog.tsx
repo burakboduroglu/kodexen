@@ -1,67 +1,67 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/dialog'
+import { Textarea } from '@/components/ui/textarea'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useState } from "react";
+} from '@/components/ui/select'
+import { useState } from 'react'
 
 const LANGUAGES = [
-  "javascript",
-  "typescript",
-  "python",
-  "java",
-  "c++",
-  "go",
-  "rust",
-  "ruby",
-  "php",
-  "swift",
-  "kotlin",
-  "sql",
-];
+  'javascript',
+  'typescript',
+  'python',
+  'java',
+  'c++',
+  'go',
+  'rust',
+  'ruby',
+  'php',
+  'swift',
+  'kotlin',
+  'sql',
+]
 
 interface CodeShareDialogProps {
-  onShare: (code: string, language: string) => void;
-  trigger: React.ReactNode;
+  onShare: (code: string, language: string) => void
+  trigger: React.ReactNode
 }
 
 export function CodeShareDialog({ onShare, trigger }: CodeShareDialogProps) {
-  const [code, setCode] = useState("");
-  const [language, setLanguage] = useState("javascript");
-  const [isOpen, setIsOpen] = useState(false);
+  const [code, setCode] = useState('')
+  const [language, setLanguage] = useState('javascript')
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleShare = () => {
     if (code.trim()) {
-      onShare(code, language);
-      setCode("");
-      setIsOpen(false);
+      onShare(code, language)
+      setCode('')
+      setIsOpen(false)
     }
-  };
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className='sm:max-w-[600px]'>
         <DialogHeader>
-          <DialogTitle>Share Code</DialogTitle>
+          <DialogTitle>Kod Paylaş</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className='grid gap-4 py-4'>
           <Select value={language} onValueChange={setLanguage}>
             <SelectTrigger>
-              <SelectValue placeholder="Select language" />
+              <SelectValue placeholder='Select language' />
             </SelectTrigger>
             <SelectContent>
               {LANGUAGES.map((lang) => (
@@ -74,14 +74,14 @@ export function CodeShareDialog({ onShare, trigger }: CodeShareDialogProps) {
           <Textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            placeholder="Paste your code here..."
-            className="min-h-[200px] font-mono"
+            placeholder='Paste your code here...'
+            className='min-h-[200px] font-mono'
           />
           <Button onClick={handleShare} disabled={!code.trim()}>
-            Share Code
+            Paylaş
           </Button>
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
